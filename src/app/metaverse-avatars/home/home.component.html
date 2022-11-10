@@ -1,0 +1,26 @@
+<ng-container class="home-page">
+  <h1>Metaverse Avatars</h1>
+  <div class="menu" *ngIf="!(selected$ | async); else avatar">
+    <div class="menu-options">
+      <div class="menu-options-avatar">
+        <img src="assets/sebastian_avatar.svg">
+        <h2 (click)="selectAvatar('Sebastian')">Sebastian</h2>
+      </div>
+      <div class="menu-options-avatar">
+        <img src="assets/katherin_avatar.svg">
+        <h2 (click)="selectAvatar('Katherin')">Katherin</h2>
+      </div>
+      <div class="menu-options-avatar">
+        <img src="assets/anthony_avatar.svg">
+        <h2 (click)="selectAvatar('Anthony')">Anthony</h2>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #avatar>
+  <div class="avatar" *ngIf="avartar$ | async as avatar">
+    <app-avatars [avatar]=avatar></app-avatars>
+    <app-chat></app-chat>
+  </div>
+</ng-template>

@@ -1,0 +1,53 @@
+h1 {
+  text-align: center;
+  color: springgreen;
+  font-family: Copperplate,Copperplate Gothic Light,fantasy;
+  font-size: 80px;
+}
+.menu {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 10%;
+
+  &-options {
+    display: flex;
+    gap: 150px;
+    justify-content: space-around;
+
+    &-avatar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    img {
+      width: 150px;
+      height: 150px;
+    }
+
+    h2 {
+      border: 2px solid rgba(137, 43, 226, 0.774);
+      padding: 25px 30px;
+      border-radius: 20px;
+      background-color: rgba(0, 255, 128, 0.822);
+    }
+  }
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 25px;
+  width: 100%;
+  gap: 20px;
+
+  app-avatars {
+    width: 15%;
+  }
+
+  app-chat {
+    width: 30%;
+  }
+}

@@ -1,0 +1,13 @@
+<div class="chat">
+  <div class="chat-log">
+    <div class="chat-messages" *ngFor="let item of chatlogs; let i = index">
+      <div class="left-message" *ngIf="(i % 2) !== 0">{{item}}</div>
+      <div class="right-message" *ngIf="(i % 2) === 0">{{item}}</div>
+    </div>
+
+  </div>
+  <div class="input-chat">
+    <input type="text" [(ngModel)]="inputChat">
+    <img src="https://i.pinimg.com/originals/26/c2/e5/26c2e56fc9b244a4d2e75d6b288ee568.png" (click)="sendMessage()">
+  </div>
+</div>
