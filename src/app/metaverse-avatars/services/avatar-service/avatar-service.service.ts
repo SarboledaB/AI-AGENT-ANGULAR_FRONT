@@ -11,6 +11,7 @@ export class AvatarServiceService {
   ) { }
 
   sendMessage(message: string) {
-    return this.http.post('http://localhost:5000/', message);
+    let request = { message }
+    return this.http.post('http://localhost:5000/perception', request);
   }
 }

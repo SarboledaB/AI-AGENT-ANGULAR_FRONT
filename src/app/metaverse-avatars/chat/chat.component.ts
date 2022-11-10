@@ -9,10 +9,7 @@ import { AvatarServiceService } from '../services/avatar-service/avatar-service.
 export class ChatComponent implements OnInit {
 
 
-  chatlogs = [
-    'Hola avatar',
-    'Hola humano'
-  ]
+  chatlogs: string[] = []
 
   inputChat: string = '';
 
