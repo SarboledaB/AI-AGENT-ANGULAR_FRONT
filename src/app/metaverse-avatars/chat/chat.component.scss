@@ -1,5 +1,6 @@
 .chat {
   height: 800px;
+  color: azure;
 }
 .chat-log {
  display: flex;
@@ -9,7 +10,6 @@
  border-radius: 5%;
  justify-content: flex-end;
  overflow-y: scroll;
-
 
  .left-message,
  .right-message {
@@ -38,7 +38,18 @@
   display: flex;
   align-items: center;
 
+  .image-input-icon {
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+  }
+
+  .image-input {
+    display: none;
+  }
+
   input {
+    color: azure;
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -46,11 +57,13 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    background-color: rgba(70, 131, 180, 0.767);
   }
 
-  img {
+  .send-image {
     margin-left: 10px;
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
+    //transform: rotate(270deg);
   }
 }

@@ -8,6 +8,15 @@
   </div>
   <div class="input-chat">
     <input type="text" [(ngModel)]="inputChat" (keyup.enter)="sendMessage()">
-    <img src="https://i.pinimg.com/originals/26/c2/e5/26c2e56fc9b244a4d2e75d6b288ee568.png" (click)="sendMessage()">
+    <label for="file-input">
+      <img class="image-input-icon" src="https://i.pinimg.com/originals/42/e5/75/42e57506108bd78fdc44159a04dd44fb.png"/>
+    </label>
+    <input
+         id="file-input"
+         class="image-input"
+         type="file"
+         accept="image/*"
+         (change)="selectFile($event)">
+    <img class="send-image" src="https://cdn-icons-png.flaticon.com/512/2343/2343805.png" (click)="sendMessage()">
   </div>
 </div>
