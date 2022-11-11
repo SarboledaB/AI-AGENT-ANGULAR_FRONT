@@ -20,7 +20,7 @@
 
 <ng-template #avatar>
   <div class="avatar" *ngIf="avartar$ | async as avatar">
-    <app-avatars [avatar]=avatar></app-avatars>
-    <app-chat></app-chat>
+    <app-avatars [avatar]="avatar"></app-avatars>
+    <app-chat [subjects]="getInterestList(avatar)"></app-chat>
   </div>
 </ng-template>

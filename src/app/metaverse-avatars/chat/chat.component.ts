@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { AvatarServiceService } from '../services/avatar-service/avatar-service.service';
 
@@ -8,7 +8,14 @@ import { AvatarServiceService } from '../services/avatar-service/avatar-service.
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
-
+  @Input() subjects = {
+    AI_introduction: "4,4,4",
+    Modern_SW_development_processes: "4,4,4",
+    Projects_management: "4,4,4",
+    UX_Design: "4,4,4",
+    Karate: "4,4,4",
+    Rest: "4,4,4",
+  }
 
   chatlogs: any[] = []
 
@@ -49,12 +56,36 @@ export class ChatComponent implements OnInit {
     });
   }
 
+  sendInterest(key: string): boolean{
+    this.avatarServiceService.sendMessage(this.subjects[key]).subscribe((response: any) => {
+      if (response.type) {
+        if (typeof response.message === 'string') {
+          if (this.sendInterest(response.message)) {
+            this.chatlogs.push({type: 2, message: response.message});
+          }
+
+        } else {
+          response.message.forEach((element : string) => {
+            this.chatlogs.push({type: 2, message: element});
+          });
+        }
+      } else {
+        this.chatlogs.push({type: 2, message: "I couldn't understand your message..."});
+      }
+      this.inputChat = ''
+    })
+    return true
+  }
+
   sendMessage(){
     this.chatlogs.push({type: 1, message: this.inputChat});
     this.avatarServiceService.sendMessage(this.inputChat).subscribe((response: any) => {
       if (response.type) {
         if (typeof response.message === 'string') {
-          this.chatlogs.push({type: 2, message: response.message});
+          if (this.sendInterest(response.message)) {
+            this.chatlogs.push({type: 2, message: response.message});
+          }
+
         } else {
           response.message.forEach((element : string) => {
             this.chatlogs.push({type: 2, message: element});
