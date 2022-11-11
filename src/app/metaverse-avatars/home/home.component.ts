@@ -16,6 +16,11 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  backToHome(){
+    this.selected$.next(false);
+    this.avartar$.next(undefined)
+  }
+
   selectAvatar(avatar: string) {
     this.selected$.next(true);
     this.avartar$.next(avatar)

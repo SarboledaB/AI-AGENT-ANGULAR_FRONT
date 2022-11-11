@@ -1,5 +1,5 @@
 <ng-container class="home-page">
-  <h1>Metaverse Avatars</h1>
+  <h1 (click)="backToHome()">Metaverse Avatars</h1>
   <div class="menu" *ngIf="!(selected$ | async); else avatar">
     <div class="menu-options">
       <div class="menu-options-avatar">
