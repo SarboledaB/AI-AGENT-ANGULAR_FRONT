@@ -10,7 +10,7 @@ import { AvatarServiceService } from '../services/avatar-service/avatar-service.
 export class ChatComponent implements OnInit {
 
 
-  chatlogs: string[] = []
+  chatlogs: any[] = []
 
   inputChat: string = '';
   selectedFile: any;
@@ -38,17 +38,24 @@ export class ChatComponent implements OnInit {
 
   sendImage(image: string) {
     console.log(image);
-    this.chatlogs.push("Send Image...");
+    this.chatlogs.push({type: 1, message: "Send Image..."});
 
   }
 
   sendMessage(){
-    this.chatlogs.push(this.inputChat);
+    this.chatlogs.push({type: 1, message: this.inputChat});
     this.avatarServiceService.sendMessage(this.inputChat).subscribe((response: any) => {
       if (response.type) {
-        this.chatlogs.push(response.message);
+        if (typeof response.message === 'string') {
+          this.chatlogs.push({type: 2, message: response.message});
+        } else {
+          response.message.forEach((element : string) => {
+            this.chatlogs.push({type: 2, message: element});
+          });
+        }
       } else {
         this.chatlogs.push("I couldn't understand your message...");
+        this.chatlogs.push({type: 2, message: "I couldn't understand your message..."});
       }
       this.inputChat = ''
     })

@@ -1,8 +1,8 @@
 <div class="chat">
   <div class="chat-log">
-    <div class="chat-messages" *ngFor="let item of chatlogs; let i = index">
-      <div class="left-message" *ngIf="(i % 2) !== 0">{{item}}</div>
-      <div class="right-message" *ngIf="(i % 2) === 0">{{item}}</div>
+    <div class="chat-messages" *ngFor="let item of chatlogs">
+      <div class="left-message" *ngIf="item.type === 2">{{item.message}}</div>
+      <div class="right-message" *ngIf="item.type === 1">{{item.message}}</div>
     </div>
 
   </div>
