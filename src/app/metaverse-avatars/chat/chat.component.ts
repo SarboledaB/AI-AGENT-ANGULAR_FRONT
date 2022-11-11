@@ -57,23 +57,31 @@ export class ChatComponent implements OnInit {
   }
 
   sendInterest(key: string): boolean{
-    this.avatarServiceService.sendMessage(this.subjects[key]).subscribe((response: any) => {
-      if (response.type) {
-        if (typeof response.message === 'string') {
-          if (this.sendInterest(response.message)) {
-            this.chatlogs.push({type: 2, message: response.message});
-          }
-
-        } else {
-          response.message.forEach((element : string) => {
-            this.chatlogs.push({type: 2, message: element});
-          });
-        }
-      } else {
-        this.chatlogs.push({type: 2, message: "I couldn't understand your message..."});
+    let element
+    Object.keys(this.subjects).map((sub, index) => {
+      if (sub == key){
+        element = Object.values(this.subjects)[index]
       }
-      this.inputChat = ''
     })
+    if (element) {
+      this.avatarServiceService.sendMessage(element).subscribe((response: any) => {
+        if (response.type) {
+          if (typeof response.message === 'string') {
+            if (this.sendInterest(response.message)) {
+              this.chatlogs.push({type: 2, message: response.message});
+            }
+          } else {
+            response.message.forEach((element : string) => {
+              this.chatlogs.push({type: 2, message: element});
+            });
+          }
+        } else {
+          this.chatlogs.push({type: 2, message: "I couldn't understand your message..."});
+        }
+        this.inputChat = ''
+      })
+      return false
+    }
     return true
   }
 
