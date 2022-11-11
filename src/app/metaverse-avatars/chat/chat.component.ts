@@ -38,8 +38,15 @@ export class ChatComponent implements OnInit {
 
   sendImage(image: string) {
     console.log(image);
-    this.chatlogs.push({type: 1, message: "Send Image..."});
-
+    this.chatlogs.push({type: 1, message: "Image sent..."});
+    this.avatarServiceService.sendImage(image).subscribe((response: any) => {
+      if (response.type) {
+        this.chatlogs.push({type: 2, message: response.message});
+      } else {
+        this.chatlogs.push({type: 2, message: "I couldn't understand your message..."});
+      }
+      this.inputChat = ''
+    });
   }
 
   sendMessage(){
@@ -54,7 +61,6 @@ export class ChatComponent implements OnInit {
           });
         }
       } else {
-        this.chatlogs.push("I couldn't understand your message...");
         this.chatlogs.push({type: 2, message: "I couldn't understand your message..."});
       }
       this.inputChat = ''
